@@ -11,6 +11,8 @@ from admin import setup_admin
 from models import db, User
 #from models import Person
 
+from domain.user.router import user_router
+
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
@@ -35,6 +37,8 @@ def handle_invalid_usage(error):
 @app.route('/')
 def sitemap():
     return generate_sitemap(app)
+
+user = user_router(app)
 
 @app.route('/user', methods=['GET'])
 def handle_hello():
